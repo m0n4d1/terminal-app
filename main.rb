@@ -1,7 +1,52 @@
-menu_main =  "habit tracker"
-menu_habbits = "habits menu"
-menu_diary = "diary menu"
-menu_metrics = "metrics menu"
+menu_main = {
+  name: "Main menu",
+  description: "some details",
+  options: [
+    "go back",
+    "register habits",
+    "Diary",
+    "metrics",
+    "help"
+  ]
+}
+
+menu_habits = {
+  name: "Habits menu",
+  description: "some details",
+  options: [
+    "go back",
+    "create habit",
+    "edit habit",
+    "remove habit",
+    "list habits"
+  ]
+}
+
+menu_diary = {
+  name: "Diary menu",
+  description: "some details",
+  options: [
+    "go back",
+    "list habbits",
+    "roster daily",
+    "calandar"
+  ]
+}
+
+menu_metrics = {
+  name: "Metrics menu",
+  description: "some details",
+  options: [
+    "go back",
+    "option 1",
+    "option 2",
+    "option 3"
+  ]
+}
+
+
+
+# "habit tracker"
 
 #INIT
 #------------------
@@ -9,21 +54,24 @@ menu_metrics = "metrics menu"
 clear = Gem.win_platform? ? (system "cls") : (system "clear")
 #------------------
 
-def menu_description(name)
-  print "Welcome to the #{name}.\n"
-  print "Description: \n"
-  print "1: register habbits, 2: Diary, 3: metrics, 4: help \n0: return\n"
+def menu_details(menu)
+
+  system "clear"
+  print "Welcome to the #{menu[:name]}.\n"
+  print "Description: #{menu[:description]}\n"
+  menu[:options].each_with_index do |option,i|
+    print "#{i}: #{option}, "
+  end
+  print "\n"
   print "enter a number to make a selection\n"
+
 end
 
 #main loop
 loop do
   #print details
   #------------------
-  print "Welcome to the #{menu_main}.\n"
-  print "Description: \n"
-  print "1: register habbits, 2: Diary, 3: metrics, 4: help \n0: return\n"
-  print "enter a number to make a selection\n"
+  menu_details(menu_main)
   #------------------
 
   #handle input
@@ -35,11 +83,7 @@ loop do
       loop do
         #Print details
         #------------------
-        clear
-        print "welcome to the #{menu_habbits}\n"
-        print "Descritpion: here you can edit and create your habbits\n"
-        print "enter a number to make a selection\n"
-        print "1: new habbit, 2: edit habbit, 3: list habbits \n0: return\n"
+        menu_details(menu_habits)
         #------------------
 
 
@@ -49,9 +93,9 @@ loop do
         
         case input
           when 0
-            
-          else
             break
+          else
+            
         end
         #------------------
       end
@@ -63,10 +107,7 @@ loop do
         #Print details
         #------------------
         clear
-        print "welcome to the #{menu_diary}\n"
-        print "Descritpion: here you can edit and create your habbits\n"
-        print "enter a number to make a selection\n"
-        print "1: todays habbits, 2: checkout, 3: calandar \n0: return\n"
+        menu_details(menu_diary)
         #------------------
 
         #handle input
@@ -74,17 +115,17 @@ loop do
 
         input = gets.strip.chomp.to_i
         case input 
+          when 0
+            break
           when 1
 
           when 2
 
           when 3
 
-          when 0
-            exit = true
           
           else
-            break
+            
         end
         #------------------
         
@@ -96,11 +137,7 @@ loop do
       loop do
         #Print details
         #------------------
-        clear
-        print "welcome to the #{menu_metrics}\n"
-        print "Descritpion: view metrics\n"
-        print "enter a number to make a selection\n"
-        print "1: todays habbits, 2: checkout, 3: calandar \n0: return\n"
+        menu_details(menu_metrics)
         #------------------
 
         #handle input
@@ -121,7 +158,7 @@ loop do
             break
         end
         #------------------
-
+      end
     else
       break
   end
