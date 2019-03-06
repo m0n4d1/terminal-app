@@ -13,7 +13,7 @@ class MenuController
           },
           {
             label:"register habits",
-            action: open_menu(@menus[:habits])
+            action: "open_menu(@menus[:main])"
           },
           {
             label: "Diary",
@@ -77,13 +77,15 @@ class MenuController
   def open_menu(menu)
     loop do
   
-      # menu_details(menu)
+      menu_details(menu)
       
       input = gets.strip.chomp.to_i
       if input == 0
         break
       elsif input <= menu[:options].length
-        menu[:options][input][:action]
+        eval(menu[:options][input][:action])
+        # p menu[:options][input][:action]
+        # gets
       else
         
       end
