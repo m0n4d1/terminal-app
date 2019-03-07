@@ -5,6 +5,7 @@ class TerminalApp
   def initialize
     @cost_goal = 0
     @habits = []
+    #menu structures
     @menus = {
       main: {
         name: "Main",
@@ -56,7 +57,7 @@ class TerminalApp
       }
     }
   end
-
+  #submenu for removing habits
   def remove_habit(prev_menu,invalid_input = nil)
     system "clear"
     if invalid_input
@@ -92,6 +93,7 @@ class TerminalApp
     end
   end
 
+  #renders help menu to terminal
   def print_help(prev_menu)
     system "clear"
     print "help details\n"
@@ -100,7 +102,8 @@ class TerminalApp
     STDIN.getch
     open_menu(prev_menu)
   end
-
+  
+  #sets goal value
   def set_goal(prev_menu)
     system "clear"
     print "Set goal size\n"
@@ -118,6 +121,7 @@ class TerminalApp
     end
   end
   
+  #render main calculation to terminal
   def list_metrics(prev_menu)
     system "clear"
 
@@ -127,7 +131,7 @@ class TerminalApp
         total_daily_savings += habit[:cost]
       end
       days = @cost_goal / total_daily_savings
-      print "Sticking to your daily habits you can achieve you goal of saving #{@cost_goal} in #{days.round(1)}days\n"
+      print "Sticking to your daily habits you can achieve your goal of saving $#{@cost_goal} in #{days.round(1)}days\n"
       print "press any key to go back\n"
       STDIN.getch
       open_menu(prev_menu)
@@ -139,6 +143,7 @@ class TerminalApp
     end
   end
 
+  #stores a habit in app state
   def create_habit(prev_menu)
     hsh = {}
     system "clear"
@@ -162,7 +167,7 @@ class TerminalApp
     end
 
   end
-
+  #renders a list of habits entered by the user.
   def list_habits(prev_menu)
     system "clear"
     if @habits.length > 0
@@ -181,6 +186,7 @@ class TerminalApp
     p ""
   end
 
+  #renders a menu to the terminal
   def render_menu(menu,invalid_input)
     system "clear"
     if invalid_input
@@ -198,6 +204,7 @@ class TerminalApp
     print "enter a number to make a selection\n"
   end
   
+  #traverses menus, opens a menu
   def open_menu(menu,invalid_input = nil)
     render_menu(menu,invalid_input)
     
