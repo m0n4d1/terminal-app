@@ -11,7 +11,7 @@ class TerminalApp
         description: "Daily Habit Economiser home screen",
         options: [
           {
-            label: "eixt",
+            label: "exit",
             action: "exit"
           },
           {
@@ -146,6 +146,7 @@ class TerminalApp
     input = gets.strip.chomp
     hsh[:name] = input
     print "How many dollars will this habit save you(daily)?\n"
+    print "Please enter a number without a dollar sign.\n"
     raw_input = gets.strip.chomp
     if raw_input =~ /[+-]?([0-9]*[.])?[0-9]+/
       input = raw_input.to_f.round(2)
@@ -154,7 +155,7 @@ class TerminalApp
       open_menu(prev_menu)
     else
       print "Invalid Input: #{raw_input}\n"
-      print "Please enter a number (eg. 5, 12.50)"
+      print "Please enter a number wihtout a dollar sign. (eg. 5, 12.50)"
       print "press any key to go back\n"
       STDIN.getch
       open_menu(prev_menu)
